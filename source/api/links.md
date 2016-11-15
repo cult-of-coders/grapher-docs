@@ -78,7 +78,7 @@ link.fetch() is smarter than link.find().fetch() because it may return a single 
 ## Managing Links
 
 {% pullquote 'warning' %}
-When adding, removing links. Please not that the arguments acceptable are smart meaning you can provide:
+When adding, removing links. Please note that the arguments acceptable are smart meaning you can provide:
 
 - Single Object With *_id*
 - String *_id* 
