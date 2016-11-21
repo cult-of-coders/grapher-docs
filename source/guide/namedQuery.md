@@ -26,7 +26,7 @@ NamedQuery is not affected by exposure at all. It has it's own firewall.
 
 ## Our First NamedQuery
 
-```
+```js
 // /imports/api/queries/orderView.js
 import { createNamedQuery } from 'meteor/cultofcoders:grapher';
 
@@ -52,7 +52,7 @@ We have two ways of handling this on the server-side.
 
 ### Importing the query
 
-```
+```js
 import query from '/imports/api/queries/ordersList';
 
 const data = query.clone({_id: 'XXX'}).fetch();
@@ -70,7 +70,7 @@ we created a .clone() method, that clones the query and it is completely isolate
 This version has been designed to make it work with [Grapher-Live](https://github.com/cult-of-coders/grapher-live),
 so you can test your queries on the fly.
 
-```
+```js
 import query from '/imports/api/queries/ordersList';
 
 const data = createQuery({
@@ -84,7 +84,7 @@ const data = createQuery({
 
 In order to fetch it client-side, you need to expose this query server-side.
 
-```
+```js
 // server-side code
 import ordersListQuery from '/imports/api/queries/ordersList';
 
@@ -108,7 +108,7 @@ ordersListQuery.expose({
 ordersListQuery.expose();
 ```
 
-```
+```js
 // client-side code
 import ordersListQuery from '/imports/api/queries/ordersList';
 
@@ -124,7 +124,7 @@ query.fetch();
 
 If you have imported the named query anywhere, then the name will be present in the store, meaning you can do:
 
-```
+```js
 // client-side code
 createQuery({
     ordersListQuery: {params}

@@ -11,7 +11,7 @@ Grapher is a Meteor package that:
 - Allows you to securely expose collections client-side
 - Allows you to fetch the data graph using JS objects as your request
 - Offers the same API for Reactive and Non-Reactive queries
-- !! Integrates with your existing Meteor projects, MongoDB relations and SimpleSchema
+- Integrates with your existing Meteor projects, already existing MongoDB relations and SimpleSchema
 
 ## LTS version: 1.2 until 2020
 
@@ -19,7 +19,7 @@ Grapher version 1.2 now has long-term support until 2020.
 
 ## Installation
 
-```
+```bash
 meteor add cultofcoders:grapher
 ```
 
@@ -34,7 +34,7 @@ meteor add cultofcoders:grapher
 
 A meteor project with some links setup and grapher-live integrated.
 
-```
+```bash
 git clone https://github.com/cult-of-coders/grapher-boilerplate
 ```
 

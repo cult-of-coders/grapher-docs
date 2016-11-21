@@ -5,7 +5,7 @@ description: A meteor bootstrap project with Grapher and Grapher-Live and Demo D
 
 ### Install
 
-```
+```bash
 git clone https://github.com/cult-of-coders/grapher-boilerplate
 cd grapher-boilerplate
 meteor npm install
@@ -45,7 +45,7 @@ To fetch all posts with their comments and their authors in Grapher Live:
 
 ### Fetch only "Good" comments:
 
-```
+```js
 {
     posts: {
         comments: {
@@ -57,7 +57,7 @@ To fetch all posts with their comments and their authors in Grapher Live:
 
 ### Use sorting options
 
-```
+```js
 {
     posts: {
         $options: {

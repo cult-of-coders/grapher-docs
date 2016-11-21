@@ -5,7 +5,7 @@ description: Reference API for Grapher Links
 
 ## Adding Direct Links
 
-```
+```js
 Posts = new Mongo.Collection('posts');
 Comments = new Mongo.Collection('comments');
 
@@ -24,7 +24,7 @@ Comments.addLinks({
 
 ## Adding Inversed Links
 
-```
+```js
 Posts.addLinks({
     comments: {
         collection: Comments,
@@ -36,7 +36,7 @@ Posts.addLinks({
 
 ## Adding Resolver Links
 
-```
+```js
 Posts.addLinks({
     commentsCount: {
         resolve(post) {
@@ -49,7 +49,7 @@ Posts.addLinks({
 
 ## Fetching Links
 
-```
+```js
 const postCommentsLink = Posts.getLink(postId, 'comments');
 const commentPostLink = Comments.getLink(commentId, 'post');
 
@@ -66,7 +66,7 @@ postCommentsLink.find().fetch(); // retrieves all linked comments
 {% endpullquote %}
 
 When fetching the links you can specify additional filters and options:
-```
+```js
 postCommentsLink.find(filters, options).fetch(); // retrieves linked comments with specific filters and options
 postCommentsLink.fetch(filters, options); // retrieves linked comments with specific filters and options
 ```
@@ -94,7 +94,7 @@ When removing links, you must have objects or *_id* strings, otherwise it wouldn
 
 ## Managing Links (One Relationship)
 
-```
+```js
 // for one relationships
 link.set(relatedId);
 link.unset();
@@ -103,7 +103,7 @@ link.unset();
 
 ## Managing Links (One Meta Relationship)
 
-```
+```js
 link.set(relatedId, {isSomething: true});
 link.metadata(); // returns the metadata: // {_id: relatedId, isSomething: true}
 link.metadata({isSomething: false}); // sets the metadata by extending the current metadata.
@@ -114,7 +114,7 @@ link.unset(); // removes the link along with metadata.
 
 ## Managing Links (Many Relationship)
 
-```
+```js
 link.add(relatedId) // accepts as arguments: [relatedId1, relatedId2], relatedObject, [relatedObject1, relatedObject2]
 link.add(objectWithoutIdProperty) // it will create the object and save it in the db and also link it
 link.add([objectWithoutIdProperty, _id]) // it will create the object objectWithoutIdProperty and link it, and it will just link it with _id string
@@ -124,7 +124,7 @@ link.remove(relatedId) // accepts as arguments: [relatedId1, relatedId2], relate
 
 ## Managing Links (Many Meta Relationship)
 
-```
+```js
 link.add(relatedId, {someConditions: true}); // it also works with [relatedId1, relatedId2, relatedObj1, relatedObj2]
 link.metadata(relatedId) // {_id: relatedId, someConditions: true}
 link.metadata() // [{_id: relatedId, someConditions: true}, {_id: relatedI2, someThingElse: false}, ...]
@@ -142,7 +142,7 @@ When managing links from inversed side you are allowed to use set(), unset(), ad
 to be able to use it in a natural language. postCommentsLink.set(commentId) wouldn't make much sense in this case.
 {% endpullquote %}
 
-```
+```js
 postCommentsLink = Posts.getLink(postId, 'comments');
 
 postCommentsLink.add(commentWithoutId) // will create a comment object in database and link it to post

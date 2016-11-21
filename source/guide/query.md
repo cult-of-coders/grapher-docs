@@ -21,7 +21,7 @@ Assuming we have these collections: Authors, Comments, Posts, Groups, Category:
 ### Don't panic! 
 We'll start defining our links, if something stops making sense. Review the [Collection Links](/guide/links.html) documentation again.
 
-```
+```js
 Authors.addLinks({
     groups: {
         collection: Groups,
@@ -99,7 +99,7 @@ Notes:
 {% endpullquote %}
 
 
-```
+```js
 const query = Posts.createQuery({
     title: 1,
     // if there are no custom fields specified, it will retrieve all fields.
@@ -130,7 +130,7 @@ Now that we have created our query, we have two options of fetching the data.
 
 Static methods receive their data using a method call to the exposure.
 
-```
+```js
 query.fetch((error, response) => {
     // if no error occured, the response will look something like this
     [
@@ -166,7 +166,7 @@ query.fetch((error, response) => {
 
 ## Reactive Queries
 
-```
+```js
 const subsHandle = query.subscribe();
 const data = query.fetch();
 
@@ -182,7 +182,7 @@ if you did not previously subscribe, you need to provide a callback because data
 
 If you don't want to use .fetch() you can also use the collections as you previously used to:
 
-```
+```js
 Posts.find().fetch()
 Comments.find({postId: 'XXXXXX'}).fetch()
 ```
@@ -190,7 +190,7 @@ Comments.find({postId: 'XXXXXX'}).fetch()
 
 ## Creating a query without the collection object
 
-```
+```js
 import { createQuery } from 'meteor/cultofcoders:grapher';
 
 createQuery({
@@ -213,7 +213,7 @@ Available $filters: http://docs.meteor.com/api/collections.html#selectors
 Available $options: *sort*, *skip* and *limit* 
 Read more: http://docs.meteor.com/api/collections.html#Mongo-Collection-find
 
-```
+```js
 const query = Posts.createQuery({
     $filters: {isApproved: true} // this will find only posts that have isApproved: true
     $options: {
@@ -233,7 +233,7 @@ const query = Posts.createQuery({
 You can pass params to your query, they will be available in every $filter() function.
 Using $filter() gives you enough control to filters and options. So $filters and $options may be omitted.
 
-```
+```js
 const query = Posts.createQuery({
     $filter({filters, options, params}) {
         filters.isApproved = params.isApproved
@@ -257,7 +257,7 @@ const query = Posts.createQuery({
 ```
 
 Control parameters however you wish:
-```
+```js
 query.setParams({
     allowSpamComments: false
 });
@@ -265,7 +265,7 @@ query.setParams({
 
 Using it with *React* and *react-meteor-data* package:
 
-```
+```js
 import { createContainer } from 'meteor/react-meteor-data';
 import query from './listPostsQuery.js';
 
@@ -298,7 +298,7 @@ By default the options "disableOplog", "pollingIntervalMs", "pollingThrottleMs" 
 You can control them in the firewall of your exposure.
 
 Grapher is very performant. To understand what we're talking about let's take this example:
-```
+```js
 {
     users: {
         posts: {

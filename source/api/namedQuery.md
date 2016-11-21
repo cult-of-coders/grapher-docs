@@ -9,7 +9,7 @@ NamedQuery is not affected by exposure at all. It has it's own firewall.
 
 ## createNamedQuery()
 
-```
+```js
 import { createNamedQuery } from 'meteor/cultofcoders:grapher';
 
 const query = createNamedQuery('postList', {
@@ -28,7 +28,7 @@ const query = createNamedQuery('postList', {
 
 Server-side only. This is used for giving access to a named query client-side.
 
-```
+```js
 query.expose({
     firewall(userId, params) {
         // throw-out an exception or do anything you want
@@ -47,7 +47,7 @@ query.expose({
 
 ## Basic usage
 
-```
+```js
 // client-side
 import postList from '/imports/api/posts/queries/postList.js';
 
@@ -69,7 +69,7 @@ once a *NamedQuery* is registered, it is kept in a store. And when using *create
 The only reason we allow this, instead of importing it, is to allow testing it live with [Grapher-Live package](https://github.com/cult-of-coders/grapher-live)
 {% endpullquote %}
 
-```
+```js
 import { createQuery } from 'meteor/cultofcoders:grapher';
 
 const query = createQuery({

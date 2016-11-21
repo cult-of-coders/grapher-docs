@@ -5,13 +5,13 @@ description: A meteor package that allows you to test your queries live.
 
 ### Install
 
-```
+```bash
 meteor add cultofcoders:grapher-live
 meteor npm install --save-dev react react-ace
 ```
 
 ### Server Side Setup
-```
+```js
 // in your /imports/startup/server
 // don't initialize it in your production environment, or it will lead to unwanted data exposure.
 
@@ -21,7 +21,7 @@ initialize(); // exposes a method "grapher_live", used by the React Component
 ```
 
 ### Client Side Setup
-```
+```js
 // client side expose a route using your router
 // example with FlowRouter
 // don't initialize this in production environment
@@ -39,7 +39,7 @@ FlowRouter.route('/grapher', () => {
 
 Grapher Live uses *createQuery*:
 
-```
+```js
 // query
 {
     tasks: {
@@ -53,3 +53,4 @@ Grapher Live uses *createQuery*:
 {
     isChecked: true
 }
+```

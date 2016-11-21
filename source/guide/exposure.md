@@ -101,7 +101,7 @@ Important: if global exposure has a firewall and the collection exposure has a f
 
 ## Taming The Firewall
 
-```
+```js
 // control what to show
 
 Collection.expose({
@@ -113,7 +113,7 @@ Collection.expose({
 });
 ```
 
-```
+```js
 // make certain fields invisible for certain users
 import { Exposure } from 'meteor/cultofcoders:grapher'
 Collection.expose({
@@ -130,14 +130,14 @@ Collection.expose({
 ## Restricting Links
 
 Restrict using a simple array:
-```
+```js
 Collection.expose({
     restrictLinks: ['privateLink', 'anotherPrivateLink']
 });
 ```
 
 Compute restricted links when fetching the query:
-```
+```js
 Collection.expose({
     restrictLinks(userId) {
         return ['privateLink', 'anotherPrivateLink']
@@ -161,7 +161,7 @@ By using body, Grapher automatically assumes you have control over what you give
 
 ### Basic Usage
 
-```
+```js
 Collection.expose({
     body: {
         firstName: 1,
@@ -173,7 +173,7 @@ Collection.expose({
 ```
 
 If you query from the *client-side* something like:
-```
+```js
 createQuery({
     collection: {
         firstName: 1,
@@ -186,7 +186,7 @@ createQuery({
 ```
 
 The intersected body will look like:
-```
+```js
 {
     firstName: 1,
     link: {}
@@ -195,7 +195,7 @@ The intersected body will look like:
 
 Ok, but what if I want to have a different body based on the userId ? Body can also be a function that takes in an userId, and returns an object.
 
-```
+```js
 Collection.expose({
     body(userId) {
         let body = { firstName: 1 };
@@ -225,7 +225,7 @@ Because, given enough requests, a hacker playing with $filters and $sort options
 {% endpullquote %}
 
 If the *body* contains functions they will be computed before intersection. Each function will receive userId.
-```
+```js
 {
     linkName(userId) { return {test: 1} }
 }
@@ -240,7 +240,7 @@ If the *body* contains functions they will be computed before intersection. Each
 
 You can return *undefined* or *false* in your function if you want to disable the field/link for intersection.
 
-```
+```js
 {
     linkName(userId) {
         if (isAdmin(userId)) {
@@ -255,7 +255,7 @@ You can return *undefined* or *false* in your function if you want to disable th
 You can link bodies in your own way and also reference other bodies'links.
 Functions are computed on-demand, meaning you can have self-referencing body functions:
 
-```
+```js
 // Comments ONE link to Users as 'user' 
 // Users INVERSED 'user' from Comments AS 'comments'
 
@@ -286,7 +286,7 @@ Comments.expose({
 ```
 
 This will allow requests like:
-```
+```js
 {
     users: {
         comments: {

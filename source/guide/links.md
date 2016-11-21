@@ -193,7 +193,7 @@ For many relationships *Many* and *Many Meta* we use add() and remove().
 
 #### Chain commands that run updates easily:
 
-```
+```js
 tagLink.remove(oldTagId).add(newTagId);
 exampleLink.set('XXX').unset();
 ```
@@ -240,7 +240,7 @@ Meta filters
 ------------
 
 Given a relationship between 2 entities: Users and Groups
-```
+```js
 Users.addLinks({
     groups: {
         collection: Groups,
@@ -254,13 +254,13 @@ Users.addLinks({
 
 You can now fetch only the groups you are admin to like this:
 
-```
+```js
 const groupsLink = Users.getLink(userId, 'groups');
 groupsLink.fetch({$meta: {isAdmin: true}});
 ```
 
 It also works from the inversed side as well:
-```
+```js
 Groups.addLinks({
     users: {
         collection: Users,
@@ -282,7 +282,7 @@ Link Loopback
 
 Reference the same collection in the link. For tree-like database structures this is great.
 
-```
+```js
 Users.addLinks({
     children: {
         collection: Users,
@@ -295,7 +295,7 @@ Users.addLinks({
 })
 ```
 
-```
+```js
 const childrenLink = Users.getLink(this.userId, 'children');
 childrenLink.fetch() // array of ob
 const parentLink = Users.getLink(this.userId, 'children');
@@ -349,7 +349,7 @@ IMPORTANT! In order for this to work without problems, make sure your schema is 
 
 #### One Relationships
 
-```
+```js
 fieldName: {
     type: String,
     optional: true
@@ -358,7 +358,7 @@ fieldName: {
 
 #### Many Relationships
 
-```
+```js
 fieldName: {
     type: [String], 
     optional: true
@@ -370,7 +370,7 @@ fieldName: {
 For meta relationships, it creates a blackbox schema if the metadata option contains no keys
 
 Example:
-```
+```js
 Users.addLinks({
     group: {
         type: 'one', 
@@ -381,7 +381,7 @@ Users.addLinks({
 ```
 
 This will append to your schema:
-```
+```js
 groupId: {
     type: Object,
     blackbox: true, 
@@ -390,7 +390,7 @@ groupId: {
 ```
 
 Example:
-```
+```js
 Users.addLinks({
     group: {
         type: 'one', 
@@ -403,7 +403,7 @@ Users.addLinks({
 ```
 
 This will append to your schema:
-```
+```js
 groupId: {
     type: Object,
     blackbox: true, 
@@ -418,7 +418,7 @@ _id field is put by default.
 {% endpullquote %}
 
 If you have a many meta relationship:
-```
+```js
 const metadataSchema = {
     _id: {type: String},
     isAdmin: {type: Boolean, optional: true}
@@ -426,7 +426,7 @@ const metadataSchema = {
 ```
 
 Appended schema will look like:
-```
+```js
 groupIds: {
     type: [metadataSchema],
     optional: true
@@ -449,7 +449,7 @@ And it only works if Member contains the inversed link to Thread.
 
 Let's see how that works'
 
-```
+```js
 Threads.addLinks({
     'members': {
         collection: Members,
@@ -470,7 +470,7 @@ And it will remove it from the fieldStorage. This way your data will be *consist
 
 Autoremoval
 -----------
-```
+```js
 Members.addLinks({
     'posts': {
         collection: Posts,
@@ -486,7 +486,7 @@ When Member document is deleted, all posts will be deleted.
 Indexing
 --------
 
-```
+```js
 Members.addLinks({
     'posts': {
         collection: Posts,

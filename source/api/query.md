@@ -10,7 +10,7 @@ Available $filters: http://docs.meteor.com/api/collections.html#selectors
 
 Available $options: *sort*, *skip* and *limit* 
 
-```
+```js
 const query = Posts.createQuery({
     $filters: {
         isPublished: true
@@ -38,7 +38,7 @@ const query = Posts.createQuery({
 
 ## createQuery()
 
-```
+```js
 import { createQuery } from 'meteor/cultofcoders:grapher';
 
 const query = createQuery({
@@ -65,7 +65,7 @@ const query = createQuery({
 ```
 
 ## Query.fetch()
-```
+```js
 // server-side
 query.fetch() 
 
@@ -73,7 +73,7 @@ query.fetch()
 query.fetch({userId: someUserId})
 ```
 
-```
+```js
 // client-side
 query.fetch((err, data) => {
     // do something with data
@@ -86,7 +86,7 @@ Same as fetch() but it always returns one result. Works very well when you want 
 
 ## Query.setParams()
 
-```
+```js
 query.setParams(params).fetch()
 ```
 
@@ -94,7 +94,7 @@ query.setParams(params).fetch()
 
 This will subscribe to the current query configuration. If you want to change parameters. You will call *setParams()*, then subscribe again. 
 
-```
+```js
 // client-side
 query.subscribe();
 query.fetch(); // no callback needed, it will fetch from client-side collections
@@ -102,7 +102,7 @@ query.fetch(); // no callback needed, it will fetch from client-side collections
 
 ## Query.unsubscribe()
 
-```
+```js
 // client-side
 query.unsubscribe();
 query.fetch(callback); // this time it needs callback because the query is now unsubscribed
@@ -113,13 +113,13 @@ query.fetch(callback); // this time it needs callback because the query is now u
 When you import your query, any changes you do to the parameters will stick. This is why it is recommended to clone it where you use it,
 so it becomes isolated.
 
-```
+```js
 const usableQuery = query.clone(newParameters);
 ```
 
 Another approach would be to export a factory function of createQuery like
 
-```
+```js
 export default () => {
     return createQuery(body);
 })

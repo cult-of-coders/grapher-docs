@@ -12,7 +12,7 @@ NamedQuery is not affected by exposure at all. It has it's own firewall.
 ## Exposure.setConfig
 This is for global configuration. It will apply to all exposures unless overriden.
 
-```
+```js
 import { Exposure } from 'meteor/cultofcoders:grapher';
 
 Exposure.setConfig({
@@ -28,7 +28,7 @@ Exposure.setConfig({
 
 If you specify any parameters used in the global configuration, they will be overridden.
 
-```
+```js
 Collection.expose({
     firewall(filters, options, userId) {
     },
@@ -46,7 +46,7 @@ Collection.expose({
 
 If you have exposed your Collection and provided a firewall. Then the find() method will be extended, allowing an additional userId field.
 
-```
+```js
 Collection.find(filters, options, userId)
 ```
 
@@ -59,7 +59,7 @@ If *userId* is undefined. Firewall will not be called and applied. Use *null* or
 Restrict certain fields, and remove them from filters and options deeply and securely.
 It will even clean-out filters with $and, $or, $nor, $not. 
 
-```
+```js
 import { Exposure } from 'meteor/cultofcoders:grapher';
 
 Users.expose({
@@ -75,7 +75,7 @@ Users.expose({
 If you specify a body to your exposures, in that case firewalls will not be linked, they will be bypassed.
 {% endpullquote %}
 
-```
+```js
 {
     posts: {
         title: 1,
@@ -90,7 +90,7 @@ If *comments*'s collection is exposed. The firewall of comments will be applied.
 
 Example:
 
-```
+```js
 Posts.expose();
 Comments.expose({
     firewall(filters, options, userId) {
@@ -101,7 +101,7 @@ Comments.expose({
 
 Then this query:
 
-```
+```js
 {
     posts: {
         comments: {}
