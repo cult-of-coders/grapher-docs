@@ -36,7 +36,7 @@ Authors.addLinks({
     likesOnFacebook: {
         // in this case resolver will receive: object, filters, options, userId
         // since resolver is run server side, the author will be the full object with all the fields.
-        resolver(author) {
+        resolve(author) {
             // do a sync call to retrieve the likes on facebook using author object.
             return count;
         }

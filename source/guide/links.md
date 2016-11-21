@@ -331,7 +331,7 @@ You can also use resolver for special database queries for example, you may need
 ```js
 Users.addLinks({
     unreadMessages: {
-        resolver(user) {
+        resolve(user) {
             return Messages.find({receiverId: user._id, isRead: false}).fetch();
         }
     }
