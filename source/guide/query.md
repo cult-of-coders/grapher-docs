@@ -292,6 +292,76 @@ we created a .clone() method, that clones the query and it is completely isolate
 When you have metadata links. A $metadata object will be stored to the children referncing the $metadata from the parent.
 {% endpullquote %}
 
+## Reducers
+
+### Basic
+
+Reducers are a way of combining the data from your graph request. Best to show an example:
+```
+// setting up
+Users.addReducers({
+    fullName: { // the name of how you want to request it
+        body: { // the dependency, what info it needs to be able to reduce
+            profile: {
+                firstName: 1,
+                lastName: 1
+            }
+        },
+        reduce(object) { // a pure function that returns the data
+            return object.profile.firstName + ' ' + object.profile.lastName;
+        }
+    }
+})
+```
+
+```
+// usage
+createQuery({
+    users: {
+        fullName: 1
+    }
+})
+```
+
+### Reducers can make use of links
+
+Easily grab the data from your links, if you want to reduce it.
+
+```
+Users.addReducers({
+    groups: { // the name of how you want to request it
+        body: {
+            groups: { name: 1 } // assuming you have a link called groups
+        },
+        reduce(object) { // a pure function that returns the data
+            return object.groups.map(group => group.name).join(',')
+        }
+    }
+})
+```
+
+### Reducers can use other reducers
+
+```
+// setting up
+Users.addReducers({
+    fullNameWithRoles: { // the name of how you want to request it
+        body: { // the dependency, what info it needs to be able to reduce
+            fullName: 1,
+            roles: 1
+        },
+        reduce(object) { // a pure function that returns the data
+            return object.fullName + object.roles.join(',');
+        }
+    }
+})
+```
+
+
+{% pullquote 'warning' %}
+If you do not explicitly request the fields that the reducer needs, they will not be present in your response.
+{% endpullquote %}
+
 ## Security and Performance
 
 By default the options "disableOplog", "pollingIntervalMs", "pollingThrottleMs" are not available on the client.

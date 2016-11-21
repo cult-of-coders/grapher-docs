@@ -48,16 +48,16 @@ const query = createQuery({
         $filter({filters, options, params}) {
             // modify filters and options don't override
         }
-        title: 1,,
+        title: 1,
         nestedField: { // {} can be used for nested fields
             nestedFieldItem: 1
-        }
+        },
         comments: {
             $filters: {}, // will only be applied to linked elements
             $options: {}, // will only be applied to linked elements
             $filter({filters, options, params}) {
                 // params is global at query level, so params here are the same as params from the parent
-            }
+            },
             linkField: 1
         }
     }
