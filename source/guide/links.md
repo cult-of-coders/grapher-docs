@@ -483,6 +483,8 @@ Members.addLinks({
 Be careful with this one! 
 When Member document is deleted, all posts will be deleted.
 
+This works from direct and inversed side as well. Use with caution.
+
 Indexing
 --------
 

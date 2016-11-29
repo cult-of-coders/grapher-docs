@@ -84,6 +84,23 @@ query.fetch((err, data) => {
 
 Same as fetch() but it always returns one result. Works very well when you want to retrieve a single item.
 
+## Query.fetchSync()
+
+You can get the data directly via promises:
+```js
+async function () {
+    const result = await query.fetchSync()
+}
+```
+
+## Query.fetchOneSync()
+
+```js
+async function () {
+    const result = await query.fetchOneSync()
+}
+```
+
 ## Query.setParams()
 
 ```js
