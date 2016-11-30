@@ -101,6 +101,27 @@ async function () {
 }
 ```
 
+
+## Query.getCount()
+```js
+// server-side
+query.getCount() 
+```
+
+```js
+// client-side
+query.getCount((err, number) => {
+    // ...
+})
+```
+
+## Query.getCountSync()
+```js
+async function () {
+    const number = await query.getCountSync()
+}
+```
+
 ## Query.setParams()
 
 ```js
