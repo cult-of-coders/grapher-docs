@@ -61,7 +61,7 @@ To fetch all posts with their comments and their authors in Grapher Live:
 {
     posts: {
         $options: {
-            $sort: {title: -1}
+            sort: {title: -1}
         },
         title: 1,
         owner: {
