@@ -105,7 +105,7 @@ Important: if global exposure has a firewall and the collection exposure has a f
 // control what to show
 
 Collection.expose({
-    firewall(filters, options, userId) => {
+    firewall(filters, options, userId) {
         if (!isAdmin(userId)) {
             filters.isVisible = true;
         }
@@ -117,7 +117,7 @@ Collection.expose({
 // make certain fields invisible for certain users
 import { Exposure } from 'meteor/cultofcoders:grapher'
 Collection.expose({
-    firewall(filters, options, userId) => {
+    firewall(filters, options, userId) {
         if (!isAdmin(userId)) {
             Exposure.restrictFields(filters, options, ['privateData'])
             // it will remove all specified fields from filters, options.sort, options.fields
@@ -150,7 +150,9 @@ Collection.expose({
 Creating an exposure body basically states that:
 "I allow the client to request anything he wants from what I allow him to."
 
-If *body* is specified, it is first applied on the request and then the subsequent rules such as *restrictedFields*, *restrictLinks*, *firewall*
+If *body* is specified, it is first applied on the request and then the subsequent rules such as *restrictedFields*, *restrictLinks*, *
+
+*
 
 This is for advanced usage and it completes the security of exposure. 
 This may be a bit tricky to understand at first because there are many rules, but don't give up hope, it's quite easy.
