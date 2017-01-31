@@ -391,5 +391,47 @@ It does this by aggregating filters and reassembles data locally.
 From 2000 queries to 4 queries we experienced around 40x percent performance boost. 
 
 ## React Integration
-For integration with React try out [cultofcoders:grapher-react](https://github.com/cult-of-coders/grapher-react) package
+For integration with React try out [cultofcoders:grapher-react](https://github.com/cult-of-coders/grapher-react) package. It provides a similar version to the standard createContainer() way of querying your data.
+
+Alternatively, if you use the [ultimatejs:tracker-react](https://github.com/ultimatejs/tracker-react) package, you can perform a query like this:
+
+```js
+class BandsList extends TrackerReact(React.Component) {
+  constructor(props) {
+    super(props);
+
+    this.query = Bands.createQuery({
+      name: 1
+    });
+    
+    this.subscription = this.query.subscribe();
+  }
+
+  componentWillUnmount() {
+    //you can stop the subscription this way
+    this.query.unubscribe();
+    //or stop the subscription directly
+    this.subscription.stop();
+  }
+
+  renderBandItems() {
+    if(!this.subscription.ready()){
+      return <div>Loading...</div>
+    }
+    return Bands.find().fetch().map((band) => {
+      return <BandItem id={band._id} key={band._id + band.name} name={band.name} />
+    });
+  }
+
+  render () {
+    return (
+      <div className="row">
+        <div className="col-md-12 text-center">
+          {this.renderBandItems()}
+        </div>
+      </div>
+    )
+  }
+}
+```
 
