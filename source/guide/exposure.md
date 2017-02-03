@@ -150,9 +150,7 @@ Collection.expose({
 Creating an exposure body basically states that:
 "I allow the client to request anything he wants from what I allow him to."
 
-If *body* is specified, it is first applied on the request and then the subsequent rules such as *restrictedFields*, *restrictLinks*, *
-
-*
+If *body* is specified, it is first applied on the request and then the subsequent rules such as *restrictedFields*, *restrictLinks*, *firewall*
 
 This is for advanced usage and it completes the security of exposure. 
 This may be a bit tricky to understand at first because there are many rules, but don't give up hope, it's quite easy.
